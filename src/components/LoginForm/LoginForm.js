@@ -23,10 +23,10 @@ function LoginForm() {
         }
         axios.post(API_BASE_URL+'login', payload)
             .then(function (response) {
-                if(response.data.code == 200){
+                if(response.data.code === 200){
                     console.log("Login successfull");
                 }
-                else if(response.data.code == 204){
+                else if(response.data.code === 204){
                     console.log("Username password do not match");
                 }
                 else{
@@ -38,7 +38,7 @@ function LoginForm() {
             });
     }
     return(
-        <div className="card login-card mt-2 hv-center">
+        <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
             <form>
                 <div className="form-group text-left">
                 <label htmlFor="exampleInputEmail1">Email address</label>
