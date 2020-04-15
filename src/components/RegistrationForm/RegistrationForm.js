@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import './RegistrationForm.css';
 import {API_BASE_URL} from '../../constants/apiContants';
-function RegistrationForm() {
+import { withRouter } from "react-router-dom";
+
+function RegistrationForm(props) {
     const [state , setState] = useState({
         email : "",
         password : "",
@@ -16,25 +18,30 @@ function RegistrationForm() {
         }))
     }
     const sendDetailsToServer = () => {
-        const payload={
-            "email":state.email,
-            "password":state.password,
+        if(state.email.length && state.password.length) {
+            props.showError(null);
+            const payload={
+                "email":state.email,
+                "password":state.password,
+            }
+            axios.post(API_BASE_URL+'register', payload)
+                .then(function (response) {
+                    if(response.data.code === 200){
+                        console.log("User registration successfull");
+                    } else{
+                        console.log("Some error ocurred");
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });    
+        } else {
+            props.showError('Please enter valid username and password')    
         }
-        axios.post(API_BASE_URL+'register', payload)
-            .then(function (response) {
-                if(response.data.code === 200){
-                    console.log("Login successfull");
-                }
-                else if(response.data.code === 204){
-                    console.log("Username password do not match");
-                }
-                else{
-                    console.log("Username does not exists");
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        
+    }
+    const redirectToLogin = () => {
+        props.history.push('/login'); 
     }
     const handleSubmitClick = (e) => {
         e.preventDefault();
@@ -87,8 +94,13 @@ function RegistrationForm() {
                     Register
                 </button>
             </form>
+            <div className="mt-2">
+                <span>Already have an account? </span>
+                <span className="loginText" onClick={() => redirectToLogin()}>Login here</span> 
+            </div>
+            
         </div>
     )
 }
 
-export default RegistrationForm;
+export default withRouter(RegistrationForm);
