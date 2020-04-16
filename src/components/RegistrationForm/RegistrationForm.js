@@ -41,6 +41,7 @@ function RegistrationForm(props) {
         
     }
     const redirectToLogin = () => {
+        props.updateTitle('Login')
         props.history.push('/login'); 
     }
     const handleSubmitClick = (e) => {

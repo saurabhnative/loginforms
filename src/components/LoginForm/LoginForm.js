@@ -41,6 +41,7 @@ function LoginForm(props) {
     }
     const redirectToRegister = () => {
         props.history.push('/register'); 
+        props.updateTitle('Register');
     }
     return(
         <div className="card col-12 col-lg-4 login-card mt-2 hv-center">

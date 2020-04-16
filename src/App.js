@@ -19,13 +19,13 @@ function App() {
         <div className="container d-flex align-items-center flex-column">
           <Switch>
             <Route path="/" exact={true}>
-              <RegistrationForm showError={updateErrorMessage}/>
+              <RegistrationForm showError={updateErrorMessage} updateTitle={updateTitle}/>
             </Route>
             <Route path="/register">
-              <RegistrationForm showError={updateErrorMessage}/>
+              <RegistrationForm showError={updateErrorMessage} updateTitle={updateTitle}/>
             </Route>
             <Route path="/login">
-              <LoginForm />
+              <LoginForm showError={updateErrorMessage} updateTitle={updateTitle}/>
             </Route>
           </Switch>
           <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>
