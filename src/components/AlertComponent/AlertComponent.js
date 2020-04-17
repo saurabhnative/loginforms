@@ -19,7 +19,7 @@ function AlertComponent(props) {
     
     return(
         <div 
-            className="alert alert-danger alert-dismissable mt-4" 
+            className={"alert alert-danger alert-dismissable mt-4"} 
             role="alert" 
             id="alertPopUp"
             style={{ display: modalDisplay }}

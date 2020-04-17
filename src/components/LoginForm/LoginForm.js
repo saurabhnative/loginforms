@@ -7,7 +7,8 @@ import { withRouter } from "react-router-dom";
 function LoginForm(props) {
     const [state , setState] = useState({
         email : "",
-        password : ""
+        password : "",
+        successMessage: null
     })
     const handleChange = (e) => {
         const {id , value} = e.target   
@@ -26,18 +27,27 @@ function LoginForm(props) {
         axios.post(API_BASE_URL+'login', payload)
             .then(function (response) {
                 if(response.data.code === 200){
-                    console.log("Login successfull");
+                    setState(prevState => ({
+                        ...prevState,
+                        'successMessage' : 'Login successful. Redirecting to home page..'
+                    }))
+                    redirectToHome();
+                    props.showError(null)
                 }
                 else if(response.data.code === 204){
-                    console.log("Username password do not match");
+                    props.showError("Username and password do not match");
                 }
                 else{
-                    console.log("Username does not exists");
+                    props.showError("Username does not exists");
                 }
             })
             .catch(function (error) {
                 console.log(error);
             });
+    }
+    const redirectToHome = () => {
+        props.updateTitle('Home')
+        props.history.push('/home');
     }
     const redirectToRegister = () => {
         props.history.push('/register'); 
@@ -76,6 +86,9 @@ function LoginForm(props) {
                     onClick={handleSubmitClick}
                 >Submit</button>
             </form>
+            <div className="alert alert-success mt-2" style={{display: state.successMessage ? 'block' : 'none' }} role="alert">
+                {state.successMessage}
+            </div>
             <div className="registerMessage">
                 <span>Dont have an account? </span>
                 <span className="loginText" onClick={() => redirectToRegister()}>Register</span> 

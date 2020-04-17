@@ -8,7 +8,8 @@ function RegistrationForm(props) {
     const [state , setState] = useState({
         email : "",
         password : "",
-        confirmPassword: ""
+        confirmPassword: "",
+        successMessage: null
     })
     const handleChange = (e) => {
         const {id , value} = e.target   
@@ -27,9 +28,14 @@ function RegistrationForm(props) {
             axios.post(API_BASE_URL+'register', payload)
                 .then(function (response) {
                     if(response.data.code === 200){
-                        console.log("User registration successfull");
+                        setState(prevState => ({
+                            ...prevState,
+                            'successMessage' : 'Registration successful. Redirecting to home page..'
+                        }))
+                        redirectToHome();
+                        props.showError(null)
                     } else{
-                        console.log("Some error ocurred");
+                        props.showError("Some error ocurred");
                     }
                 })
                 .catch(function (error) {
@@ -40,6 +46,10 @@ function RegistrationForm(props) {
         }
         
     }
+    const redirectToHome = () => {
+        props.updateTitle('Home')
+        props.history.push('/home');
+    }
     const redirectToLogin = () => {
         props.updateTitle('Login')
         props.history.push('/login'); 
@@ -49,7 +59,7 @@ function RegistrationForm(props) {
         if(state.password === state.confirmPassword) {
             sendDetailsToServer()    
         } else {
-            alert('Passwords do not match');
+            props.showError('Passwords do not match');
         }
     }
     return(
@@ -95,6 +105,9 @@ function RegistrationForm(props) {
                     Register
                 </button>
             </form>
+            <div className="alert alert-success mt-2" style={{display: state.successMessage ? 'block' : 'none' }} role="alert">
+                {state.successMessage}
+            </div>
             <div className="mt-2">
                 <span>Already have an account? </span>
                 <span className="loginText" onClick={() => redirectToLogin()}>Login here</span> 
