@@ -28,7 +28,7 @@ function App() {
             <Route path="/login">
               <LoginForm showError={updateErrorMessage} updateTitle={updateTitle}/>
             </Route>
-            <Route path="/home">
+            <Route path="/home/UnionRepresentative">
               <Home/>
             </Route>
           </Switch>

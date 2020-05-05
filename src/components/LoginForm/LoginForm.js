@@ -22,8 +22,8 @@ function LoginForm(props) {
         e.preventDefault();
         const payload={
             "email":state.email,
-            "password":state.password,
-        }
+            "password":state.password
+        };
         axios.post(API_BASE_URL+'login', payload)
             .then(function (response) {
                 if(response.data.code === 200){
@@ -47,11 +47,13 @@ function LoginForm(props) {
     }
     const redirectToHome = () => {
         props.updateTitle('Home')
-        props.history.push('/home');
+        // we need to have a function here to get the type of user from the server and insert it into the kindofuser variant
+        const kindofuser = "UnionRepresentative" // get from server
+        props.history.push(`/home/${kindofuser}`)
     }
     const redirectToRegister = () => {
-        props.history.push('/register'); 
-        props.updateTitle('Register');
+        props.history.push('/register')
+        props.updateTitle('Register')
     }
     return(
         <div className="card col-12 col-lg-4 login-card mt-2 hv-center">

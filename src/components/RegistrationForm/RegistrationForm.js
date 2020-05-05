@@ -20,9 +20,11 @@ function RegistrationForm(props) {
     }
     const sendDetailsToServer = () => {
         if(state.email.length && state.password.length) {
+         //   redirectToHome();
             props.showError(null);
             const payload={
                 "email":state.email,
+                "role":state.role,
                 "password":state.password,
             }
             axios.post(API_BASE_URL+'register', payload)
@@ -75,7 +77,19 @@ function RegistrationForm(props) {
                        value={state.email}
                        onChange={handleChange}
                 />
-                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
+                </div>
+                <div className="form-group text-left">
+                <label htmlFor="inputRole">Role</label>
+                <input type="text"
+                    className="form-control"
+                    id="role"
+                    aria-describedby="roleHelp"
+                    placeholder="Enter role"
+                    value={state.role}
+                    onChange={handleChange}
+                />
+                <small id="rolelHelp" className="form-text text-muted">i.e. Referee, Union Representitive, Coach, Player, Team Manager, Team Owner, Fan.</small>
                 </div>
                 <div className="form-group text-left">
                     <label htmlFor="exampleInputPassword1">Password</label>
