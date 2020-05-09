@@ -25,21 +25,21 @@ function RegistrationForm(props) {
     const sendDetailsToServer = () => {
         if(userDetails.username.length && userDetails.password.length) {
             const payload={
-                "email":userDetails.username,
+                "username":userDetails.username,
                 "role":userDetails.role,
                 "password":userDetails.password
             }
             axios.post(API_BASE_URL+'register', payload)
                 .then(function (response) {
-                    if(response.data.code === 200){
+                    if(response.status === 200){
                         setUserDetails(prevState => ({
                             ...prevState,
-                            'successMessage' : 'Registration successful. Redirecting to home page..'
+                            'successMessage' : 'Registration successful. Login to continue.'
                         }))
-                        redirectToHome('',userDetails.role);
+                        // redirectToLogin();
                         props.showError(null)
                     } else{
-                        props.showError("Some error ocurred");
+                        props.showError(response.data);
                     }
                 })
                 .catch(function (error) {
@@ -91,7 +91,7 @@ function RegistrationForm(props) {
                         <option value="unionrepresentative" className="form-control">Union Representative</option>
                         <option value="player" className="form-control">Player</option>
                         <option value="coach" className="form-control">Coach</option>
-                        <option value="teammaneger" className="form-control">Team Manager</option>
+                        <option value="teammanager" className="form-control">Team Manager</option>
                         <option value="teamowner" className="form-control">Team Owner</option>
                         <option value="referee" className="form-control">Referee</option>
                         <option value="fan" className="form-control">Fan</option>

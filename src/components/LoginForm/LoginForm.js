@@ -22,7 +22,7 @@ function LoginForm(props) {
     const handleSubmitClick = (e) => {
         e.preventDefault();
 
-        // this should be removed:
+       //  this should be removed:
         setState(prevState => ({
             ...prevState,
             'successMessage' : 'Login successful. Redirecting to home page..'
@@ -31,22 +31,26 @@ function LoginForm(props) {
         props.showError(null)
         
         // this will send the messag to the server when it will work:
-        const payload=`email: ${state.username} password: ${state.password}`
+        const payload=`{ 
+            username: ${state.username},
+            password: ${state.password}
+        }`
+
         axios.post(API_BASE_URL+'login', payload)
             .then(function (response) {
-                if(response.data.code === 200){
+                if(response.status === 200){
                     setState(prevState => ({
                         ...prevState,
                         'successMessage' : 'Login successful. Redirecting to home page..'
                     }))
-                    redirectToHome(state.username, '');
+                    redirectToHome(state.username, response.data);
                     props.showError(null)
                 }
-                else if(response.data.code === 204){
-                    props.showError("Username and password do not match");
-                }
+                // else if(response.data.code === 204){
+                //     props.showError("Username and password do not match");
+                // }
                 else{
-                    props.showError("Username does not exists");
+                    props.showError(response.data);
                 }
             })
             .catch(function (error) {

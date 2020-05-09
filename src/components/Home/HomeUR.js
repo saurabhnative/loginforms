@@ -1,6 +1,6 @@
 import React from 'react';
 import MenuButton from '../MenuButton/MenuButton'
-import {redirectToLogin, gotoAddLeague} from '../Redirect/Redirect'
+import {redirectToLogin, gotoAddLeague, gotoApproveTeam} from '../Redirect/Redirect'
 import {ur} from '../../constants/apiContants'
 
 
@@ -20,7 +20,7 @@ function HomeUnionRepresentative(props) {
             <MenuButton btnText="Update games scheduling policy"></MenuButton>
             <MenuButton btnText="Manage referees"></MenuButton>
             <MenuButton btnText="Manage games"></MenuButton> {/* ????? */}
-            <MenuButton btnText="Approve team creation"></MenuButton>
+            <MenuButton btnText="Approve team creation" handle={gotoApproveTeam}></MenuButton>
             <MenuButton btnText="Finance"></MenuButton> {/* ????? */}
             <MenuButton btnText="Log out" handle={redirectToLogin}></MenuButton>
         </div>      

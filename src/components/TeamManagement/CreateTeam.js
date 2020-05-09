@@ -25,14 +25,15 @@ function CreateTeam(props) {
         }
         axios.post(API_BASE_URL+'addteam', payload)
             .then(function (response) {
-                if(response.data.code === 200){
+                if(response.status === 200){
                     setDetails(prevState => ({
                         ...prevState,
-                        'successMessage' : 'Request for team ceation sent, waiting for union representative approval to create the team'
+                        'successMessage' : response.data
+                        // 'successMessage' : 'Request for team ceation sent, waiting for union representative approval to create the team'
                     }))
                     props.showError(null)
                 } else{
-                    props.showError("Some error ocurred");
+                    props.showError(response.data);
                 }
             })
             .catch(function (error) {

@@ -23,14 +23,14 @@ function AddLeague(props) {
         }
         axios.post(API_BASE_URL+'addleague', payload)
             .then(function (response) {
-                if(response.data.code === 200){
+                if(response.status === 200){
                     setDetails(prevState => ({
                         ...prevState,
-                        'successMessage' : 'Created league successfully'
+                        'successMessage' : response.data
                     }))
                     props.showError(null)
                 } else{
-                    props.showError("Some error ocurred");
+                    props.showError(response.data);
                 }
             })
             .catch(function (error) {
