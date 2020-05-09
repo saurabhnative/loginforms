@@ -10,7 +10,7 @@ function RegistrationForm(props) {
     const [userDetails , setUserDetails] = useState({
         username : "",
         email : "",
-        role : "",
+        role : "unionrepresentative",
         password : "",
         confirmPassword: "",
         successMessage: null
@@ -24,11 +24,12 @@ function RegistrationForm(props) {
     }
     const sendDetailsToServer = () => {
         if(userDetails.username.length && userDetails.password.length) {
-            const payload={
-                "username":userDetails.username,
-                "role":userDetails.role,
-                "password":userDetails.password
-            }
+            const payload=`{
+                username:${userDetails.username},
+                password:${userDetails.password},
+                role:${userDetails.role},
+                email:${userDetails.email}                
+            }`
             axios.post(API_BASE_URL+'register', payload)
                 .then(function (response) {
                     if(response.status === 200){

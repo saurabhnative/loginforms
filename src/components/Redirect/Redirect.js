@@ -43,3 +43,19 @@ export function gotoCreateTeam(){
 export function gotoApproveTeam(){
     history.push('approveteam')
 }
+
+export function gotoChangeStatus(){
+    history.push('changeteamstatus')
+}
+
+export function gotoAddRemove(){
+    history.push('addremove')
+}
+
+export function gotoAddPermissionsTM(){
+    history.push('addpermissionstm')
+}
+
+export function gotoNavigateRole(){
+    history.push('navigaterole')
+}

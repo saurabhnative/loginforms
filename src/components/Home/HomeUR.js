@@ -2,7 +2,7 @@ import React from 'react';
 import MenuButton from '../MenuButton/MenuButton'
 import {redirectToLogin, gotoAddLeague, gotoApproveTeam} from '../Redirect/Redirect'
 import {ur} from '../../constants/apiContants'
-
+import { withRouter } from "react-router-dom";
 
 function HomeUnionRepresentative(props) {
     props.updateTitle('Home')
@@ -27,4 +27,4 @@ function HomeUnionRepresentative(props) {
     )
 }
 
-export default HomeUnionRepresentative;
+export default withRouter(HomeUnionRepresentative);

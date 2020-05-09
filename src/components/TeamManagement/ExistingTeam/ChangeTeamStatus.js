@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {API_BASE_URL} from '../../constants/apiContants';
+import {API_BASE_URL} from '../../../constants/apiContants';
 import { withRouter } from "react-router-dom";
-import {redirectToHome} from '../Redirect/Redirect'
+import {redirectToHome} from '../../Redirect/Redirect'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row'
 
-function AddRole(props) {
-    props.updateTitle('Add a user type (in the same team)')
+function ChangeTeamStatus(props) {
+    props.updateTitle('Change team status')
     const [details , setDetails] = useState({
-        userType : "teamowner",
+        name : "",
+        status : "1",
         successMessage: null
     })
     const handleChange = (e) => {
@@ -19,9 +22,10 @@ function AddRole(props) {
     }
     const sendDetailsToServer = () => {
         const payload=`{
-            role:${details.userType}
+            nameteam:${details.name},
+            status:${details.status}
         }`
-        axios.post(API_BASE_URL+'addrole', payload)
+        axios.post(API_BASE_URL+'changestatusforteam', payload)
             .then(function (response) {
                 if(response.status === 200){
                     setDetails(prevState => ({
@@ -39,28 +43,40 @@ function AddRole(props) {
     }
     const handleSubmitClick = (e) => {
         e.preventDefault();
-        sendDetailsToServer()    
+        if(details.name.length) {
+            sendDetailsToServer()    
+        } else {
+            props.showError('Please enter a valid name');
+        }
     }
     return(
         <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
             <form>
                 <div className="form-group text-left">
-                <label>Select a role to add:</label>
-                <div className="form-group text-center">
-                    <select id="userType" value={details.userType} onChange={handleChange} className="dropdown-toggle btn btn-primary">
-                        <option value="teamowner" className="form-control">Team Owner</option>
-                        <option value="teammanager" className="form-control">Team Manager</option>
-                        <option value="player" className="form-control">Player</option>
-                        <option value="coach" className="form-control">Coach</option>
-                    </select>
+                <label>Team name</label>
+                <input type="text"
+                    className="form-control"
+                    id="name"
+                    placeholder="Enter name"
+                    value={details.name}
+                    onChange={handleChange}
+                />
                 </div>
+                <div className="form-group text-center">
+                    <Container>
+                    <Row><label>Select status:</label></Row>
+                    <select id="status" value={details.status} onChange={handleChange} className="dropdown-toggle btn btn-primary">
+                        <option value="1" className="form-control">Open</option>
+                        <option value="0" className="form-control">Closed</option>
+                    </select>
+                    </Container>
                 </div>
                 <button 
                     type="submit" 
                     className="btn btn-primary"
                     onClick={handleSubmitClick}
                 >
-                    Add role to user
+                    Update status
                 </button>
             </form>
             <div className="alert alert-success mt-2" style={{display: details.successMessage ? 'block' : 'none' }} role="alert">
@@ -73,4 +89,4 @@ function AddRole(props) {
     )
 }
 
-export default withRouter(AddRole);
+export default withRouter(ChangeTeamStatus);

@@ -1,22 +1,22 @@
 import React from 'react';
 import MenuButton from '../MenuButton/MenuButton'
+import { withRouter } from "react-router-dom";
+import {redirectToLogin, gotoAddRole, gotoTeamMenu, gotoNavigateRole} from '../Redirect/Redirect'
 
 function HomeTeamManager(props) {
-    const handle = () => {
-        console.log("in handle for add a league")
-    }
+    props.updateTitle('Home')
+    props.updateTypeOfUser('teammanager')
     return(
         <div className="mt-2">
-            Welcome Union Representative
-            <MenuButton btnText="Add a league" handle={handle()}></MenuButton>
-            <MenuButton btnText="Add a season"></MenuButton>
-            <MenuButton btnText="Manage referees"></MenuButton>
-            <MenuButton btnText="Update score policy"></MenuButton>
-            <MenuButton btnText="Manage games"></MenuButton>
-            <MenuButton btnText="Finance"></MenuButton>
-            <MenuButton btnText="Log out"></MenuButton>
-        </div>
+            <h1>
+            Welcome Team Manager
+            </h1>
+            <MenuButton btnText="Add a user type to your user" handle={gotoAddRole}></MenuButton>
+            <MenuButton btnText="Manage existing team" handle={gotoTeamMenu}></MenuButton>
+            <MenuButton btnText="Enter other roles menus" handle={gotoNavigateRole}></MenuButton>
+            <MenuButton btnText="Log out" handle={redirectToLogin}></MenuButton>
+        </div>   
     )
 }
 
-export default HomeTeamManager;
+export default withRouter(HomeTeamManager);

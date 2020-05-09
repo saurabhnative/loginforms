@@ -1,5 +1,6 @@
 import React from 'react';
 import MenuButton from '../MenuButton/MenuButton'
+import { withRouter } from "react-router-dom";
 import {redirectToRegister, redirectToLogin} from '../Redirect/Redirect'
 
 function HomeGuest(props) {
@@ -17,4 +18,4 @@ function HomeGuest(props) {
     )
 }
 
-export default HomeGuest;
+export default withRouter(HomeGuest);
