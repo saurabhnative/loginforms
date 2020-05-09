@@ -3,10 +3,12 @@ import axios from 'axios';
 import './LoginForm.css';
 import {API_BASE_URL} from '../../constants/apiContants';
 import { withRouter } from "react-router-dom";
+import {redirectToHome, redirectToRegister} from '../Redirect/Redirect'
 
 function LoginForm(props) {
+    props.updateTitle('Login')
     const [state , setState] = useState({
-        email : "",
+        username : "",
         password : "",
         successMessage: null
     })
@@ -17,13 +19,19 @@ function LoginForm(props) {
             [id] : value
         }))
     }
-
     const handleSubmitClick = (e) => {
         e.preventDefault();
-        const payload={
-            "email":state.email,
-            "password":state.password
-        };
+
+        // this should be removed:
+        setState(prevState => ({
+            ...prevState,
+            'successMessage' : 'Login successful. Redirecting to home page..'
+        }))
+        redirectToHome(state.username,'');
+        props.showError(null)
+        
+        // this will send the messag to the server when it will work:
+        const payload=`email: ${state.username} password: ${state.password}`
         axios.post(API_BASE_URL+'login', payload)
             .then(function (response) {
                 if(response.data.code === 200){
@@ -31,7 +39,7 @@ function LoginForm(props) {
                         ...prevState,
                         'successMessage' : 'Login successful. Redirecting to home page..'
                     }))
-                    redirectToHome();
+                    redirectToHome(state.username, '');
                     props.showError(null)
                 }
                 else if(response.data.code === 204){
@@ -45,30 +53,18 @@ function LoginForm(props) {
                 console.log(error);
             });
     }
-    const redirectToHome = () => {
-        props.updateTitle('Home')
-        // we need to have a function here to get the type of user from the server and insert it into the kindofuser variant
-        const kindofuser = "UnionRepresentative" // get from server
-        props.history.push(`/home/${kindofuser}`)
-    }
-    const redirectToRegister = () => {
-        props.history.push('/register')
-        props.updateTitle('Register')
-    }
     return(
         <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
             <form>
                 <div className="form-group text-left">
-                <label htmlFor="exampleInputEmail1">Email address</label>
-                <input type="email" 
+                <label htmlFor="exampleInputEmail1">Username</label>
+                <input type="text" 
                        className="form-control" 
-                       id="email" 
-                       aria-describedby="emailHelp" 
-                       placeholder="Enter email" 
-                       value={state.email}
+                       id="username" 
+                       placeholder="Enter username" 
+                       value={state.username}
                        onChange={handleChange}
                 />
-                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div className="form-group text-left">
                 <label htmlFor="exampleInputPassword1">Password</label>
@@ -92,9 +88,12 @@ function LoginForm(props) {
                 {state.successMessage}
             </div>
             <div className="registerMessage">
-                <span>Dont have an account? </span>
+                <span>Don't have an account? </span>
                 <span className="loginText" onClick={() => redirectToRegister()}>Register</span> 
             </div>
+            <div className="mt-2">
+                <span className="loginText" onClick={() => redirectToHome('','guest')}>Enter as a guest</span> 
+            </div>   
         </div>
     )
 }

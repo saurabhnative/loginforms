@@ -1,7 +1,7 @@
 import React from 'react';
-import MenuButton from '../../components/MenuButton/MenuButton'
+import MenuButton from '../MenuButton/MenuButton'
 
-function Home(props) {
+function HomeTeamManager(props) {
     const handle = () => {
         console.log("in handle for add a league")
     }
@@ -19,4 +19,4 @@ function Home(props) {
     )
 }
 
-export default Home;
+export default HomeTeamManager;
