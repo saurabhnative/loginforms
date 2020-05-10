@@ -5,7 +5,6 @@ import {redirectToLogin, gotoAddRole, gotoTeamMenu, gotoCreateTeam, gotoAddPermi
 
 function HomeTeamOwner(props) {
     props.updateTitle('Home')
-    props.updateTypeOfUser('teamowner')
 
 /// need to check if they have a team -> if not, display a msg. if yes-> redirect to page ???
     

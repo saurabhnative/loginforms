@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import {API_BASE_URL} from '../../constants/apiContants';
 import { withRouter } from "react-router-dom";
-import {redirectToHome} from '../Redirect/Redirect'
+import {goBack} from '../Redirect/Redirect'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
 
@@ -90,7 +90,7 @@ function AddPermissionsTM(props) {
                 {details.successMessage}
             </div>
             <div className="mt-2">
-                <span className="loginText" onClick={() => redirectToHome('', props.typeOfUser)}>Back to menu</span> 
+                <span className="loginText" onClick={() => goBack()}>Back to menu</span> 
             </div>            
         </div>
     )

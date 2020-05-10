@@ -5,7 +5,6 @@ import {redirectToLogin, gotoAddRole, gotoTeamMenu, gotoNavigateRole} from '../R
 
 function HomeTeamManager(props) {
     props.updateTitle('Home')
-    props.updateTypeOfUser('teammanager')
     return(
         <div className="mt-2">
             <h1>

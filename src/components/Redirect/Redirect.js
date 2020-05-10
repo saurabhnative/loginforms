@@ -16,6 +16,11 @@ export function redirectToHome (username, alreadyIn) {
     history.push(`/home/${kindofuser}`);
 }
 
+export function goBack(){
+    console.log('here')
+    history.goBack()
+}
+
 export function redirectToLogin(){
     history.push('/login'); 
 }
@@ -58,4 +63,12 @@ export function gotoAddPermissionsTM(){
 
 export function gotoNavigateRole(){
     history.push('navigaterole')
+}
+
+export function gotoUpdateSeason(){
+    history.push('updateseason')
+}
+
+export function gotoSchedulingPolicy(){
+    history.push('schedulingpolicy')
 }

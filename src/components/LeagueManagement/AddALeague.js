@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import {API_BASE_URL} from '../../constants/apiContants';
 import { withRouter } from "react-router-dom";
-import {redirectToHome} from '../Redirect/Redirect'
+import {goBack} from '../Redirect/Redirect'
 
 function AddLeague(props) {
     props.updateTitle('Creat a new league')
@@ -21,7 +21,7 @@ function AddLeague(props) {
         const payload={
             "name":leagueDetails.name,
         }
-        axios.post(API_BASE_URL+'addleague', payload)
+        axios.post(API_BASE_URL+'defineleague', payload)
             .then(function (response) {
                 if(response.status === 200){
                     setDetails(prevState => ({
@@ -71,7 +71,7 @@ function AddLeague(props) {
                 {leagueDetails.successMessage}
             </div>
             <div className="mt-2">
-                <span className="loginText" onClick={() => redirectToHome('', props.typeOfUser)}>Back to menu</span> 
+                <span className="loginText" onClick={() => goBack()}>Back to menu</span> 
             </div>            
         </div>
     )

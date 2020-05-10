@@ -24,12 +24,14 @@ import AddRemoveObject from './components/TeamManagement/ExistingTeam/AddRemoveO
 import AddRole from './components/TeamManagement/AddRole'
 import AddPermissionsToTM from './components/TeamManagement/AddPermissionsToTM'
 import NavigateInRoles from './components/TeamManagement/NavigateInRoles'
+import UpdateSeasonInLeague from './components/LeagueManagement/UpdateSeasonInLeague'
+import SchedulingPolicy from './components/LeagueManagement/SchedulingPolicy'
 
 
 function App() {
   const [title, updateTitle] = useState(null)
   const [errorMessage, updateErrorMessage] = useState(null)
-  const [typeOfUser, updateType] = useState(null)
+  const [newSeason, updateNewSeason] = useState(null)
   return (
     <Router history={history}>
     <div className="App">
@@ -46,43 +48,49 @@ function App() {
               <LoginForm showError={updateErrorMessage} updateTitle={updateTitle}/>
             </Route>
             <Route path="/home/unionrepresentative">
-              <HomeUnionRepresentative updateTitle={updateTitle} updateTypeOfUser={updateType}/>
+              <HomeUnionRepresentative updateTitle={updateTitle} updateNewSeason={updateNewSeason}/>
             </Route>
             <Route path="/home/teamowner">
-              <HomeTeamOwner updateTitle={updateTitle} updateTypeOfUser={updateType}/>
+              <HomeTeamOwner updateTitle={updateTitle}/>
             </Route>
             <Route path="/home/teammanager">
-              <HomeTeamManager updateTitle={updateTitle} updateTypeOfUser={updateType}/>
+              <HomeTeamManager updateTitle={updateTitle}/>
             </Route>
             <Route path="/home/guest">
-              <HomeGuest updateTitle={updateTitle} updateTypeOfUser={updateType}/>
+              <HomeGuest updateTitle={updateTitle}/>
             </Route>
             <Route path='/home/addleague'>
-              <AddLeague updateTitle={updateTitle} showError={updateErrorMessage} typeOfUser={typeOfUser}/>
+              <AddLeague updateTitle={updateTitle} showError={updateErrorMessage}/>
             </Route>
             <Route path='/home/team'>
-              <TeamMenu updateTitle={updateTitle} typeOfUser={typeOfUser}/>
+              <TeamMenu updateTitle={updateTitle}/>
             </Route>
             <Route path='/home/createteam'>
-              <CreateTeam updateTitle={updateTitle} showError={updateErrorMessage} typeOfUser={typeOfUser}/>
+              <CreateTeam updateTitle={updateTitle} showError={updateErrorMessage}/>
             </Route>
             <Route path='/home/approveteam'>
-              <ApproveTeamCreation updateTitle={updateTitle} showError={updateErrorMessage} typeOfUser={typeOfUser}/>
+              <ApproveTeamCreation updateTitle={updateTitle} showError={updateErrorMessage}/>
             </Route>
             <Route path='/home/changeteamstatus'>
-              <ChangeTeamStatus updateTitle={updateTitle} showError={updateErrorMessage} typeOfUser={typeOfUser}/>
+              <ChangeTeamStatus updateTitle={updateTitle} showError={updateErrorMessage}/>
             </Route>
             <Route path='/home/addremove'>
-              <AddRemoveObject updateTitle={updateTitle} showError={updateErrorMessage} typeOfUser={typeOfUser}/>
+              <AddRemoveObject updateTitle={updateTitle} showError={updateErrorMessage}/>
             </Route>
             <Route path='/home/addrole'>
-              <AddRole updateTitle={updateTitle} showError={updateErrorMessage} typeOfUser={typeOfUser}/>
+              <AddRole updateTitle={updateTitle} showError={updateErrorMessage}/>
             </Route>
             <Route path='/home/addpermissionstm'>
-              <AddPermissionsToTM updateTitle={updateTitle} showError={updateErrorMessage} typeOfUser={typeOfUser}/>
+              <AddPermissionsToTM updateTitle={updateTitle} showError={updateErrorMessage}/>
             </Route>
             <Route path='/home/navigaterole'>
-              <NavigateInRoles updateTitle={updateTitle} showError={updateErrorMessage} typeOfUser={typeOfUser}/>
+              <NavigateInRoles updateTitle={updateTitle} showError={updateErrorMessage}/>
+            </Route>
+            <Route path='/home/updateseason'>
+              <UpdateSeasonInLeague updateTitle={updateTitle} showError={updateErrorMessage} newSeason={newSeason}/>
+            </Route>
+            <Route path='/home/schedulingpolicy'>
+              <SchedulingPolicy updateTitle={updateTitle} showError={updateErrorMessage}/>
             </Route>
           </Switch>
           <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>

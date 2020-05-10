@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {API_BASE_URL} from '../../constants/apiContants';
 import { withRouter } from "react-router-dom";
-import {redirectToHome} from '../Redirect/Redirect';
+import {goBack, redirectToHome} from '../Redirect/Redirect';
 import '../../design.css'
 
 function NavigateInRoles(props) {
@@ -43,7 +43,7 @@ function NavigateInRoles(props) {
             </div>    
             </form>
             <div className="mt-2">
-                <span className="loginText" onClick={() => redirectToHome('', props.typeOfUser)}>Back to menu</span> 
+                <span className="loginText" onClick={() => goBack()}>Back to menu</span> 
             </div>            
         </div>
     )

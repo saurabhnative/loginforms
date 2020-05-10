@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import {API_BASE_URL} from '../../constants/apiContants';
 import { withRouter } from "react-router-dom";
-import {redirectToHome} from '../Redirect/Redirect'
+import {goBack} from '../Redirect/Redirect'
 
 function ApproveTeamCreation(props) {
     props.updateTitle('Approve teams')
@@ -107,7 +107,7 @@ function ApproveTeamCreation(props) {
                 {teams.successMessage}
             </div>
             <div className="mt-2">
-                <span className="loginText" onClick={() => redirectToHome('', props.typeOfUser)}>Back to menu</span> 
+                <span className="loginText" onClick={() => goBack()}>Back to menu</span> 
             </div>            
         </div>
     )

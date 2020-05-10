@@ -1,12 +1,20 @@
 import React from 'react';
 import MenuButton from '../MenuButton/MenuButton'
-import {redirectToLogin, gotoAddLeague, gotoApproveTeam} from '../Redirect/Redirect'
-import {ur} from '../../constants/apiContants'
+import {redirectToLogin, gotoAddLeague, gotoApproveTeam, gotoUpdateSeason, gotoSchedulingPolicy} from '../Redirect/Redirect'
 import { withRouter } from "react-router-dom";
 
 function HomeUnionRepresentative(props) {
     props.updateTitle('Home')
-    props.updateTypeOfUser(ur)
+
+    const newSeason = () => {
+        props.updateNewSeason(true)
+        gotoUpdateSeason()
+    }
+
+    const existingSeason = () => {
+        props.updateNewSeason(false)
+        gotoUpdateSeason()
+    }
 
 
     return(
@@ -15,9 +23,9 @@ function HomeUnionRepresentative(props) {
             Welcome Union Representative
             </h1>
             <MenuButton btnText="Add a league" handle={gotoAddLeague}></MenuButton>
-            <MenuButton btnText="Add a season"></MenuButton>
-            <MenuButton btnText="Update score policy"></MenuButton>
-            <MenuButton btnText="Update games scheduling policy"></MenuButton>
+            <MenuButton btnText="Add a season" handle={newSeason}></MenuButton>
+            <MenuButton btnText="Update score policy for season" handle={existingSeason}></MenuButton>
+            <MenuButton btnText="Update games scheduling policy" handle={gotoSchedulingPolicy}></MenuButton>
             <MenuButton btnText="Manage referees"></MenuButton>
             <MenuButton btnText="Manage games"></MenuButton> {/* ????? */}
             <MenuButton btnText="Approve team creation" handle={gotoApproveTeam}></MenuButton>

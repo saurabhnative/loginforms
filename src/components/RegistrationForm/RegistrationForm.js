@@ -77,12 +77,12 @@ function RegistrationForm(props) {
                 <input type="email" 
                        className="form-control" 
                        id="email" 
-                       aria-describedby="emailHelp" 
+                    //    aria-describedby="emailHelp" 
                        placeholder="Enter email" 
                        value={userDetails.email}
                        onChange={handleChange}
                 />
-                <small id="emailHelp" className="form-text text-muted">Enter your email in order to receive updates</small>
+                {/* <small id="emailHelp" className="form-text text-muted">Enter your email in order to receive updates</small> */}
                 </div>
                 <div className="form-group text-left">
                     <label className="row">
