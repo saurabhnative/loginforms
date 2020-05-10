@@ -72,3 +72,11 @@ export function gotoUpdateSeason(){
 export function gotoSchedulingPolicy(){
     history.push('schedulingpolicy')
 }
+
+export function gotoAddTeamToLeague(){
+    history.push('addteamtoleague')
+}
+
+export function gotoAddRemoveReferee(){
+    history.push('addremovereferee')
+}

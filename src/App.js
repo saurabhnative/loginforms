@@ -26,6 +26,8 @@ import AddPermissionsToTM from './components/TeamManagement/AddPermissionsToTM'
 import NavigateInRoles from './components/TeamManagement/NavigateInRoles'
 import UpdateSeasonInLeague from './components/LeagueManagement/UpdateSeasonInLeague'
 import SchedulingPolicy from './components/LeagueManagement/SchedulingPolicy'
+import AddTeamToLeague from './components/LeagueManagement/AddTeamToLeague'
+import AddRemoveReferee from './components/ManageReferees/AddRemoveReferee'
 
 
 function App() {
@@ -91,6 +93,12 @@ function App() {
             </Route>
             <Route path='/home/schedulingpolicy'>
               <SchedulingPolicy updateTitle={updateTitle} showError={updateErrorMessage}/>
+            </Route>
+            <Route path='/home/addteamtoleague'>
+              <AddTeamToLeague updateTitle={updateTitle} showError={updateErrorMessage}/>
+            </Route>
+            <Route path='/home/addremovereferee'>
+              <AddRemoveReferee updateTitle={updateTitle} showError={updateErrorMessage}/>
             </Route>
           </Switch>
           <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>
