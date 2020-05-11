@@ -19,7 +19,7 @@ function AddRole(props) {
     }
     const sendDetailsToServer = () => {
         const payload=`{
-            role:${details.userType}
+            role:'${details.userType}'
         }`
         axios.post(API_BASE_URL+'addrole', payload)
             .then(function (response) {

@@ -10,7 +10,7 @@ function RegistrationForm(props) {
     const [userDetails , setUserDetails] = useState({
         username : "",
         email : "",
-        role : "unionrepresentative",
+        role : "UnionRepresentative",
         password : "",
         confirmPassword: "",
         successMessage: null
@@ -26,12 +26,13 @@ function RegistrationForm(props) {
         if(userDetails.username.length && userDetails.password.length) {
             const payload=`{
                 username:${userDetails.username},
-                password:${userDetails.password},
+                password:'${userDetails.password}',
                 role:${userDetails.role},
                 email:${userDetails.email}                
             }`
-            axios.post(API_BASE_URL+'register', payload)
+            axios.post(API_BASE_URL+'registration', payload)
                 .then(function (response) {
+                    console.log(response)
                     if(response.status === 200){
                         setUserDetails(prevState => ({
                             ...prevState,
@@ -89,13 +90,13 @@ function RegistrationForm(props) {
                     Select a user type:
                     </label>
                     <select id="role" value={userDetails.role} onChange={handleChange} className="dropdown-toggle btn btn-primary">
-                        <option value="unionrepresentative" className="form-control">Union Representative</option>
-                        <option value="player" className="form-control">Player</option>
-                        <option value="coach" className="form-control">Coach</option>
-                        <option value="teammanager" className="form-control">Team Manager</option>
-                        <option value="teamowner" className="form-control">Team Owner</option>
-                        <option value="referee" className="form-control">Referee</option>
-                        <option value="fan" className="form-control">Fan</option>
+                        <option value="UnionRepresentative" className="form-control">Union Representative</option>
+                        <option value="Player" className="form-control">Player</option>
+                        <option value="Coach" className="form-control">Coach</option>
+                        <option value="TeamManager" className="form-control">Team Manager</option>
+                        <option value="TeamOwner" className="form-control">Team Owner</option>
+                        <option value="Referee" className="form-control">Referee</option>
+                        <option value="Fan" className="form-control">Fan</option>
                     </select>
                 </div>
                 <div className="form-group text-left">

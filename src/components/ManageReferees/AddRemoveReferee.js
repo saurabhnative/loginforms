@@ -27,9 +27,9 @@ function AddRemoveReferee(props) {
     const sendDetailsToServer = () => {
         const payload=`{
             usernamereferee:${details.refereeUsername},
-            password:${details.password},
+            password:'${details.password}',
             email:${details.email},
-            addremove:${details.addOrRemove}
+            addremove:'${details.addOrRemove}'
         }`
         axios.post(API_BASE_URL+'addremovereferee', payload)
             .then(function (response) {

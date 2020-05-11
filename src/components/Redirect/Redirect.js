@@ -17,7 +17,6 @@ export function redirectToHome (username, alreadyIn) {
 }
 
 export function goBack(){
-    console.log('here')
     history.goBack()
 }
 

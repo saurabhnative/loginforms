@@ -22,18 +22,18 @@ function LoginForm(props) {
     const handleSubmitClick = (e) => {
         e.preventDefault();
 
-       //  this should be removed:
-        setState(prevState => ({
-            ...prevState,
-            'successMessage' : 'Login successful. Redirecting to home page..'
-        }))
-        redirectToHome(state.username,'');
-        props.showError(null)
+    //    //  this should be removed:
+    //     setState(prevState => ({
+    //         ...prevState,
+    //         'successMessage' : 'Login successful. Redirecting to home page..'
+    //     }))
+    //     redirectToHome(state.username,'');
+    //     props.showError(null)
         
         // this will send the messag to the server when it will work:
         const payload=`{ 
             username: ${state.username},
-            password: ${state.password}
+            password: '${state.password}'
         }`
 
         axios.post(API_BASE_URL+'login', payload)
@@ -46,9 +46,6 @@ function LoginForm(props) {
                     redirectToHome(state.username, response.data);
                     props.showError(null)
                 }
-                // else if(response.data.code === 204){
-                //     props.showError("Username and password do not match");
-                // }
                 else{
                     props.showError(response.data);
                 }

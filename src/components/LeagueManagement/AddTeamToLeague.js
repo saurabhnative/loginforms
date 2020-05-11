@@ -29,7 +29,7 @@ function AddTeamToLeague(props) {
             payload=`{
                 nameteam:${details.name},
                 nameleague:${details.leaugueName},
-                year:${details.season}
+                year:'${details.season}'
             }`
             request = 'addteamtoleague'
         }
@@ -37,7 +37,7 @@ function AddTeamToLeague(props) {
             payload=`{
                 usernamereferee:${details.name},
                 nameleague:${details.leaugueName},
-                year:${details.season}
+                year:'${details.season}'
             }`
             request = 'setrefereeonleague'
         }

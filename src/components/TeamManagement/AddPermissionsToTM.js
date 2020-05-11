@@ -23,7 +23,7 @@ function AddPermissionsTM(props) {
     const sendDetailsToServer = () => {
         const payload=`{
             username:${details.username},
-            permissions:${details.permissions}
+            permissions:'${details.permissions}'
         }`
         axios.post(API_BASE_URL+'addpermissiontoteammanger', payload)
             .then(function (response) {

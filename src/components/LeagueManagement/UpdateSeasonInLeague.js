@@ -37,10 +37,10 @@ function UpdateSeason(props) {
     const sendDetailsToServer = () => {
         const payload=`{
             nameleague:${details.leaugueName},
-            year:${details.season},
-            win:${details.win},
-            loss:${details.lose},
-            equal:${details.even}
+            year:'${details.season}',
+            win:'${details.win}',
+            loss:'${details.lose}',
+            equal:'${details.even}'
         }`
         axios.post(API_BASE_URL+request, payload)
             .then(function (response) {

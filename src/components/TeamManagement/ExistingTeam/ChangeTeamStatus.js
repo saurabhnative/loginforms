@@ -23,7 +23,7 @@ function ChangeTeamStatus(props) {
     const sendDetailsToServer = () => {
         const payload=`{
             nameteam:${details.name},
-            status:${details.status}
+            status:'${details.status}'
         }`
         axios.post(API_BASE_URL+'changestatusforteam', payload)
             .then(function (response) {

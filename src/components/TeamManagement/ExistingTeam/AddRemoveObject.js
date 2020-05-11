@@ -27,7 +27,7 @@ function AddRemoveObjectFromTeam(props) {
         const payload=`{
             teamname:${details.teamName},
             objectname:${details.objectName},
-            addremove:${details.addOrRemove}
+            addremove:'${details.addOrRemove}'
         }`
         axios.post(API_BASE_URL+'addremove'+objectType, payload)
             .then(function (response) {
