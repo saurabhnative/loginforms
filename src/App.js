@@ -28,6 +28,8 @@ import UpdateSeasonInLeague from './components/LeagueManagement/UpdateSeasonInLe
 import SchedulingPolicy from './components/LeagueManagement/SchedulingPolicy'
 import AddTeamToLeague from './components/LeagueManagement/AddTeamToLeague'
 import AddRemoveReferee from './components/ManageReferees/AddRemoveReferee'
+import HomeReferee from './components/Home/HomeReferee'
+import EditEvent from './components/GameManagement/EditEvent'
 
 
 function App() {
@@ -49,6 +51,7 @@ function App() {
             <Route path="/login">
               <LoginForm showError={updateErrorMessage} updateTitle={updateTitle}/>
             </Route>
+            {/* home pages: */}
             <Route path="/home/unionrepresentative">
               <HomeUnionRepresentative updateTitle={updateTitle} updateNewSeason={updateNewSeason}/>
             </Route>
@@ -58,9 +61,13 @@ function App() {
             <Route path="/home/teammanager">
               <HomeTeamManager updateTitle={updateTitle}/>
             </Route>
+            <Route path="/home/referee">
+              <HomeReferee updateTitle={updateTitle}/>
+            </Route>
             <Route path="/home/guest">
               <HomeGuest updateTitle={updateTitle}/>
             </Route>
+            {/* actions: */}
             <Route path='/home/addleague'>
               <AddLeague updateTitle={updateTitle} showError={updateErrorMessage}/>
             </Route>
@@ -99,6 +106,9 @@ function App() {
             </Route>
             <Route path='/home/addremovereferee'>
               <AddRemoveReferee updateTitle={updateTitle} showError={updateErrorMessage}/>
+            </Route>
+            <Route path='/home/editevent'>
+              <EditEvent updateTitle={updateTitle} showError={updateErrorMessage}/>
             </Route>
           </Switch>
           <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>

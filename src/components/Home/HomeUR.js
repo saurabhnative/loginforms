@@ -28,9 +28,9 @@ function HomeUnionRepresentative(props) {
             <MenuButton btnText="Update score policy for season" handle={existingSeason}></MenuButton>
             <MenuButton btnText="Update games scheduling policy" handle={gotoSchedulingPolicy}></MenuButton>
             <MenuButton btnText="Add or remove referees" handle={gotoAddRemoveReferee}></MenuButton>
-            <MenuButton btnText="Manage games"></MenuButton> {/* ????? */}
+            {/* <MenuButton btnText="Manage games"></MenuButton>  */}
             <MenuButton btnText="Approve team creation" handle={gotoApproveTeam}></MenuButton>
-            <MenuButton btnText="Finance"></MenuButton> {/* ????? */}
+            {/* <MenuButton btnText="Finance"></MenuButton> */}
             <MenuButton btnText="Log out" handle={redirectToLogin}></MenuButton>
         </div>      
     )

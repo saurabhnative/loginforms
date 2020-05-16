@@ -79,3 +79,7 @@ export function gotoAddTeamToLeague(){
 export function gotoAddRemoveReferee(){
     history.push('addremovereferee')
 }
+
+export function gotoEditEvent(){
+    history.push('editevent')
+}
