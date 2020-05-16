@@ -1,4 +1,4 @@
-import React, {useState, Component} from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 import {API_BASE_URL} from '../../constants/apiContants';
 import { withRouter } from "react-router-dom";
@@ -12,90 +12,66 @@ class ApproveTeamCreation extends Component{
         toApprove : "",
         successMessage : null
     };
-    
+
     constructor(props){
         super(props);
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmitClick = this.handleSubmitClick.bind(this)
-        this.getTeamsFromServer = this.getTeamsFromServer.bind(this)
+
         new Promise((resolved, rejected) => {
             try{
-                var list;
                 axios.get(API_BASE_URL+'teamsforapproval')
-                    .then(function (response) {
+                    .then(response => {
                         if(response.status === 200){
                             console.log(response)
-                            list = response.data
+                            let list = response.data;
+                            return list
+                
+                        }else{
+                            rejected("No response")
+                        }
+                
+                      })
+                      .then(list => {
+                        this.setState(prevState => ({
+                            ...prevState,
+                            'teamsList' : list
+                        }))
+                        return list;
+                
+                      })
+                    .then(result => {
+                        // verify the result is valid and not empty
+                        if(result && result[0] !== ""){
+                            this.setState(prevState => ({
+                                ...prevState,
+                                'displayTeamsList' : result.map((team)=>{
+                                    return (
+                                        <div className="form-group">
+                                            <label>{team}</label>
+                                        </div>
+                                    );
+                                })
+                            }))
+                        }
+                        else { 
+                            // result is undefined -> did not get a response from the server
+                            this.setState(prevState => ({
+                                ...prevState,
+                                'displayTeamsList' :  ['There are no teams to approve']
+                            }))
                         }
                     })
-                    .then( () => {
+                    .catch(error => {
                         this.setState(prevState => ({
-                                        ...prevState,
-                                        'teamsList' : list
-                                    }))
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                        list = "";
+                            ...prevState,
+                            'displayTeamsList' :  ['There are no teams to approve']
+                        }))
                     })          
-                var data  = this.getTeamsFromServer()       
-                resolved(data) 
-
-                // axios.get(API_BASE_URL+'teamsforapproval')
-                // .then(function (response) {
-                //     if(response.status === 200){
-                //         console.log(response)
-                //         //list = response.data
-                //         this.setState(prevState => ({
-                //             ...prevState,
-                //             'teamsList' : response.data
-                //         }))
-                //         this.props.showError(null)
-                //     }
-                // })
-                // .then(
-                //     resolved(this.state.teamsList) 
-                // )
-                // .catch(function (error) {
-                //     console.log(error);
-                // })                
             } catch (e) {
                 rejected(e)
             }
         })
-        .then( result => {
-            if (result){
-                // approve the teams
-                this.setState(prevState => ({
-                    ...prevState,
-                    'displayTeamsList' : result.map((team)=>{
-                        return (
-                            <div className="form-group">
-                                <label>{team}</label>
-                            </div>
-                        );
-                    })
-                }))
-              //  this.props.showError(null)
-
-                // this.state.displayTeamsList = result.map((team)=>{
-                //     return (
-                //         <div className="form-group">
-                //             <label>{team}</label>
-                //         </div>
-                //     );
-                // })
-            }
-            else {
-                // no teams for approval
-                this.setState(prevState => ({
-                    ...prevState,
-                    'displayTeamsList' :  ['There are no teams to approve']
-                }))
-              //  this.props.showError(null)
-            }
-        })
-        .catch(error => console.log(error))
     }
 
     handleChange(e){
@@ -104,24 +80,6 @@ class ApproveTeamCreation extends Component{
             ...prevState,
             [id] : value
         }))
-    }
-
-    getTeamsFromServer() {
-        var list;
-        axios.get(API_BASE_URL+'teamsforapproval')
-            .then(function (response) {
-                if(response.status === 200){
-                    console.log(response)
-                    list = response.data
-                }
-            })
-            .then( () =>{
-                return list
-            })
-            .catch(function (error) {
-                console.log(error);
-                list = "";
-            })        
     }
 
     approveTeamInServer(teamName){
@@ -155,40 +113,6 @@ class ApproveTeamCreation extends Component{
 
     render() {
         this.props.updateTitle('Approve teams')
-      //  this.props.showError(null)
-        // let teamsDisplay;
-        // var listOfTeams;
-        // new Promise((resolved, rejected) => {
-        //     try{
-        //         this.getTeamsFromServer()
-        //         resolved(this.state.teamsList)
-        //     } catch (e) {
-        //         rejected("")
-        //     }
-        // })
-        // .then( result => {
-        // // calling the functions:
-        // //setTimeout(()=> getTeamsFromServer(),10000)
-        
-        // if (result === ""){
-        //     // no teams for approval
-        //     teamsDisplay = 'There are no teams to approve'
-        // }
-        // else {
-        //     // approve the teams
-        //     //teamsDisplay = teams.teamsList
-        //     let templist = result
-        //     listOfTeams = templist.map((team)=>{
-        //         return (
-        //             <div className="form-group">
-        //                 <label className="control-label">
-        //                     {team}
-        //                 </label>
-        //             </div>
-        //         );
-        //     })
-        // }
-        // })
         return(
             <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
                 <form>
