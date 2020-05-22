@@ -4,6 +4,7 @@ import './LoginForm.css';
 import {API_BASE_URL} from '../../constants/apiContants';
 import { withRouter } from "react-router-dom";
 import {redirectToHome, redirectToRegister} from '../Redirect/Redirect'
+import SubmitButton from '../InputFields/SubmitButton';
 
 function LoginForm(props) {
     props.updateTitle('Login')
@@ -19,8 +20,7 @@ function LoginForm(props) {
             [id] : value
         }))
     }
-    const handleSubmitClick = (e) => {
-        e.preventDefault();
+    const handleSubmitClick = () => {
 
     //    //  this should be removed:
     //     setState(prevState => ({
@@ -79,11 +79,7 @@ function LoginForm(props) {
                 </div>
                 <div className="form-check">
                 </div>
-                <button 
-                    type="submit" 
-                    className="btn btn-primary"
-                    onClick={handleSubmitClick}
-                >Submit</button>
+                <SubmitButton handleSubmitClick={handleSubmitClick} buttonText="Submit"/>
             </form>
             <div className="alert alert-success mt-2" style={{display: state.successMessage ? 'block' : 'none' }} role="alert">
                 {state.successMessage}

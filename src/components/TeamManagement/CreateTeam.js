@@ -3,6 +3,7 @@ import axios from 'axios';
 import {API_BASE_URL} from '../../constants/apiContants';
 import { withRouter } from "react-router-dom";
 import {goBack} from '../Redirect/Redirect'
+import SubmitButton from '../InputFields/SubmitButton';
 
 function CreateTeam(props) {
     props.updateTitle('Creat a new team')
@@ -40,8 +41,7 @@ function CreateTeam(props) {
                 console.log(error);
             });   
     }
-    const handleSubmitClick = (e) => {
-        e.preventDefault();
+    const handleSubmitClick = () => {
         if(details.name.length && details.field.length) {
             sendDetailsToServer()    
         } else {
@@ -71,13 +71,7 @@ function CreateTeam(props) {
                     onChange={handleChange}
                 />
                 </div>
-                <button 
-                    type="submit" 
-                    className="btn btn-primary"
-                    onClick={handleSubmitClick}
-                >
-                    Create team
-                </button>
+                <SubmitButton handleSubmitClick={handleSubmitClick} buttonText="Create team"/>
             </form>
             <div className="alert alert-success mt-2" style={{display: details.successMessage ? 'block' : 'none' }} role="alert">
                 {details.successMessage}

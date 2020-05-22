@@ -6,6 +6,7 @@ import {goBack} from '../../Redirect/Redirect'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import SubmitButton from '../../InputFields/SubmitButton';
 
 function AddRemoveObjectFromTeam(props) {
     props.updateTitle('Manage team members and fields')
@@ -45,8 +46,7 @@ function AddRemoveObjectFromTeam(props) {
                 console.log(error);
             });   
     }
-    const handleSubmitClick = (e) => {
-        e.preventDefault();
+    const handleSubmitClick = () => {
         if(details.teamName.length && details.addOrRemove.length && details.objectName) {
             sendDetailsToServer(details.objectType)    
         } else {
@@ -116,13 +116,7 @@ function AddRemoveObjectFromTeam(props) {
                     onChange={handleChange}
                 />
                 </div>
-                <button 
-                    type="submit" 
-                    className="btn btn-primary"
-                    onClick={handleSubmitClick}
-                >
-                    Update team
-                </button>
+                <SubmitButton handleSubmitClick={handleSubmitClick} buttonText="Update team"/>
             </form>
             <div className="alert alert-success mt-2" style={{display: details.successMessage ? 'block' : 'none' }} role="alert">
                 {details.successMessage}

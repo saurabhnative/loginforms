@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import {goBack} from '../Redirect/Redirect'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
+import SubmitButton from '../InputFields/SubmitButton';
 
 function AddPermissionsTM(props) {
     props.updateTitle('Add permissions to a team manager')
@@ -41,8 +42,7 @@ function AddPermissionsTM(props) {
                 console.log(error);
             });   
     }
-    const handleSubmitClick = (e) => {
-        e.preventDefault();
+    const handleSubmitClick = () => {
         if(details.username.length) {
             sendDetailsToServer()    
         } else {
@@ -78,13 +78,7 @@ function AddPermissionsTM(props) {
                     </select>
                     </Container>
                 </div>
-                <button 
-                    type="submit" 
-                    className="btn btn-primary"
-                    onClick={handleSubmitClick}
-                >
-                    Add permissions
-                </button>
+                <SubmitButton handleSubmitClick={handleSubmitClick} buttonText="Add permissions"/>
             </form>
             <div className="alert alert-success mt-2" style={{display: details.successMessage ? 'block' : 'none' }} role="alert">
                 {details.successMessage}

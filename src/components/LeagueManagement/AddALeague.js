@@ -3,6 +3,7 @@ import axios from 'axios';
 import {API_BASE_URL} from '../../constants/apiContants';
 import { withRouter } from "react-router-dom";
 import {goBack} from '../Redirect/Redirect'
+import SubmitButton from '../InputFields/SubmitButton';
 
 function AddLeague(props) {
     props.updateTitle('Creat a new league')
@@ -37,8 +38,8 @@ function AddLeague(props) {
                 console.log(error);
             });   
     }
-    const handleSubmitClick = (e) => {
-        e.preventDefault();
+    const handleSubmitClick = () => {
+        // e.preventDefault();
         if(leagueDetails.name.length) {
             sendDetailsToServer()    
         } else {
@@ -58,14 +59,8 @@ function AddLeague(props) {
                     onChange={handleChange}
                 />
                 {/* <small id="rolelHelp" className="form-text text-muted">i.e. Referee, Union Representitive, Coach, Player, Team Manager, Team Owner, Fan.</small> */}
-                </div>
-                <button 
-                    type="submit" 
-                    className="btn btn-primary"
-                    onClick={handleSubmitClick}
-                >
-                    Create league
-                </button>
+                </div>                
+                <SubmitButton handleSubmitClick={handleSubmitClick} buttonText="Create league"/>
             </form>
             <div className="alert alert-success mt-2" style={{display: leagueDetails.successMessage ? 'block' : 'none' }} role="alert">
                 {leagueDetails.successMessage}

@@ -3,6 +3,7 @@ import axios from 'axios';
 import {API_BASE_URL} from '../../constants/apiContants';
 import { withRouter } from "react-router-dom";
 import {goBack} from '../Redirect/Redirect'
+import SubmitButton from '../InputFields/SubmitButton';
 
 function SchedulingPolicy(props) {
     props.updateTitle('Update scheduling policy')
@@ -43,8 +44,8 @@ function SchedulingPolicy(props) {
                 console.log(error);
             });   
     }
-    const handleSubmitClick = (e) => {
-        e.preventDefault();
+    const handleSubmitClick = () => {
+        //e.preventDefault();
         if(details.leaugueName.length && details.win.length && details.lose.length && details.even.length){
             sendDetailsToServer()
         }
@@ -104,13 +105,7 @@ function SchedulingPolicy(props) {
                     <small id="evenHelp" className="form-text text-muted">In "one game" each team will play against another once. <br/>In "two games" each team will play against another twice, once in each home field</small>
                 </div>
                 </div>
-                <button 
-                    type="submit" 
-                    className="btn btn-primary"
-                    onClick={handleSubmitClick}
-                >
-                    Update policy
-                </button>
+                <SubmitButton handleSubmitClick={handleSubmitClick} buttonText="Update policy"/>
             </form>
             <div className="alert alert-success mt-2" style={{display: details.successMessage ? 'block' : 'none' }} role="alert">
                 {details.successMessage}

@@ -3,6 +3,7 @@ import axios from 'axios';
 import {API_BASE_URL} from '../../constants/apiContants';
 import { withRouter } from "react-router-dom";
 import {goBack} from '../Redirect/Redirect'
+import SubmitButton from '../InputFields/SubmitButton';
 
 function AddRole(props) {
     props.updateTitle('Add a user type (in the same team)')
@@ -37,8 +38,7 @@ function AddRole(props) {
                 console.log(error);
             });   
     }
-    const handleSubmitClick = (e) => {
-        e.preventDefault();
+    const handleSubmitClick = () => {
         sendDetailsToServer()    
     }
     return(
@@ -55,13 +55,7 @@ function AddRole(props) {
                     </select>
                 </div>
                 </div>
-                <button 
-                    type="submit" 
-                    className="btn btn-primary"
-                    onClick={handleSubmitClick}
-                >
-                    Add role to user
-                </button>
+                <SubmitButton handleSubmitClick={handleSubmitClick} buttonText="Add role to user"/>
             </form>
             <div className="alert alert-success mt-2" style={{display: details.successMessage ? 'block' : 'none' }} role="alert">
                 {details.successMessage}

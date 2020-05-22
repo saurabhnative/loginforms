@@ -6,6 +6,7 @@ import {goBack} from '../Redirect/Redirect'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import SubmitButton from '../InputFields/SubmitButton';
 
 function AddRemoveReferee(props) {
     props.updateTitle('Add or remove referees')
@@ -47,8 +48,7 @@ function AddRemoveReferee(props) {
                 console.log(error);
             });   
     }
-    const handleSubmitClick = (e) => {
-        e.preventDefault();
+    const handleSubmitClick = () => {
         if(details.password !== details.confirm){
             props.showError('Passwords do not match')
         }
@@ -132,13 +132,7 @@ function AddRemoveReferee(props) {
                     onChange={handleChange}
                 />                
             </div>
-                <button 
-                    type="submit" 
-                    className="btn btn-primary"
-                    onClick={handleSubmitClick}
-                >
-                    Update referee
-                </button>
+            <SubmitButton handleSubmitClick={handleSubmitClick} buttonText="Update referee"/>
             </form>
             <div className="alert alert-success mt-2" style={{display: details.successMessage ? 'block' : 'none' }} role="alert">
                 {details.successMessage}

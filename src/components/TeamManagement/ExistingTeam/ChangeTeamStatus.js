@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import {goBack} from '../../Redirect/Redirect'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
+import SubmitButton from '../../InputFields/SubmitButton';
 
 function ChangeTeamStatus(props) {
     props.updateTitle('Change team status')
@@ -41,8 +42,7 @@ function ChangeTeamStatus(props) {
                 console.log(error);
             });   
     }
-    const handleSubmitClick = (e) => {
-        e.preventDefault();
+    const handleSubmitClick = () => {
         if(details.name.length) {
             sendDetailsToServer()    
         } else {
@@ -71,13 +71,7 @@ function ChangeTeamStatus(props) {
                     </select>
                     </Container>
                 </div>
-                <button 
-                    type="submit" 
-                    className="btn btn-primary"
-                    onClick={handleSubmitClick}
-                >
-                    Update status
-                </button>
+                <SubmitButton handleSubmitClick={handleSubmitClick} buttonText="Update status"/>
             </form>
             <div className="alert alert-success mt-2" style={{display: details.successMessage ? 'block' : 'none' }} role="alert">
                 {details.successMessage}

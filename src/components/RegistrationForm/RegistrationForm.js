@@ -4,6 +4,7 @@ import './RegistrationForm.css';
 import {API_BASE_URL} from '../../constants/apiContants';
 import {withRouter} from "react-router-dom";
 import {redirectToHome, redirectToLogin} from '../Redirect/Redirect'
+import SubmitButton from '../InputFields/SubmitButton';
 
 function RegistrationForm(props) {
     props.updateTitle('Registration')
@@ -51,8 +52,7 @@ function RegistrationForm(props) {
             props.showError('Please enter valid username and password')    
         }       
     }
-    const handleSubmitClick = (e) => {
-        e.preventDefault();
+    const handleSubmitClick = () => {
         if(userDetails.password === userDetails.confirmPassword) {
             sendDetailsToServer()    
         } else {
@@ -119,13 +119,7 @@ function RegistrationForm(props) {
                         onChange={handleChange} 
                     />
                 </div>
-                <button 
-                    type="submit" 
-                    className="btn btn-primary"
-                    onClick={handleSubmitClick}
-                >
-                    Register
-                </button>
+                <SubmitButton handleSubmitClick={handleSubmitClick} buttonText="Register"/>
             </form>
             <div className="alert alert-success mt-2" style={{display: userDetails.successMessage ? 'block' : 'none' }} role="alert">
                 {userDetails.successMessage}

@@ -3,6 +3,7 @@ import axios from 'axios';
 import {API_BASE_URL} from '../../constants/apiContants';
 import { withRouter } from "react-router-dom";
 import {goBack} from '../Redirect/Redirect'
+import SubmitButton from '../InputFields/SubmitButton';
 
 function AddTeamToLeague(props) {
     props.updateTitle('Add team or referee to season in league')
@@ -57,8 +58,8 @@ function AddTeamToLeague(props) {
                 console.log(error);
             });   
     }
-    const handleSubmitClick = (e) => {
-        e.preventDefault();
+    const handleSubmitClick = () => {
+        //e.preventDefault();
         if(details.leaugueName.length && details.name.length){
             sendDetailsToServer()
         }
@@ -128,13 +129,7 @@ function AddTeamToLeague(props) {
                 />
                 <small id="info" className="form-text text-muted">Note: league, season and team or referee have to be defined in the system</small>
                 </div>
-                <button 
-                    type="submit" 
-                    className="btn btn-primary"
-                    onClick={handleSubmitClick}
-                >
-                    Add
-                </button>
+                <SubmitButton handleSubmitClick={handleSubmitClick} buttonText="Add"/>
             </form>
             <div className="alert alert-success mt-2" style={{display: details.successMessage ? 'block' : 'none' }} role="alert">
                 {details.successMessage}
