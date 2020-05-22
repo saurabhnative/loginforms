@@ -83,3 +83,7 @@ export function gotoAddRemoveReferee(){
 export function gotoEditEvent(){
     history.push('editevent')
 }
+
+export function gotoWatchLogs(){
+    history.push('watchlogs')
+}

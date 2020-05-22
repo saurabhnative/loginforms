@@ -30,6 +30,8 @@ import AddTeamToLeague from './components/LeagueManagement/AddTeamToLeague'
 import AddRemoveReferee from './components/ManageReferees/AddRemoveReferee'
 import HomeReferee from './components/Home/HomeReferee'
 import EditEvent from './components/GameManagement/EditEvent'
+import HomeSysAdmin from './components/Home/HomeSysAdmin'
+import WatchSysLogs from './components/Logs/WatchSysLogs'
 
 
 function App() {
@@ -64,10 +66,18 @@ function App() {
             <Route path="/home/referee">
               <HomeReferee updateTitle={updateTitle}/>
             </Route>
+            <Route path="/home/systemadministrator">
+              <HomeSysAdmin updateTitle={updateTitle}/>
+            </Route>
             <Route path="/home/guest">
               <HomeGuest updateTitle={updateTitle}/>
             </Route>
             {/* actions: */}
+              {/* sys admin: */}
+            <Route path='/home/watchlogs'>
+              <WatchSysLogs updateTitle={updateTitle} showError={updateErrorMessage}/>
+            </Route>
+              {/* league and team: */}
             <Route path='/home/addleague'>
               <AddLeague updateTitle={updateTitle} showError={updateErrorMessage}/>
             </Route>
