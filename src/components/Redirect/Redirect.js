@@ -99,3 +99,7 @@ export function gotoAnswerComplaints(){
 export function gotoSaveGame(){
     history.push('savegame')
 }
+
+export function gotoWatchGame(){
+    history.push('viewgame')
+}

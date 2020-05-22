@@ -35,6 +35,7 @@ import WatchSysLogs from './components/Logs/WatchSysLogs'
 import ChangeTeamStatusSysAdmin from './components/TeamManagement/ExistingTeam/ChangeTeamStatusSysAdmin'
 import AnswerComplaints from './components/Complaints/AnswerComplaints'
 import SaveGame from './components/GameManagement/SaveGame'
+import ViewGame from './components/GameManagement/ViewGame'
 
 
 function App() {
@@ -131,6 +132,9 @@ function App() {
             </Route>
             <Route path='/home/savegame'>
               <SaveGame updateTitle={updateTitle} showError={updateErrorMessage}/>
+            </Route>
+            <Route path='/home/viewgame'>
+              <ViewGame updateTitle={updateTitle} showError={updateErrorMessage}/>
             </Route>
           </Switch>
           <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>
