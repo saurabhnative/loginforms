@@ -64,7 +64,6 @@ function UpdateEvent(props) {
             });   
     }
     const handleSubmitClick = () => {
-        // e.preventDefault();
         if(details.teamName.length && details.gameId.length && details.playerName.length){
             sendDetailsToServer()
         }

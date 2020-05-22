@@ -32,6 +32,8 @@ import HomeReferee from './components/Home/HomeReferee'
 import EditEvent from './components/GameManagement/EditEvent'
 import HomeSysAdmin from './components/Home/HomeSysAdmin'
 import WatchSysLogs from './components/Logs/WatchSysLogs'
+import ChangeTeamStatusSysAdmin from './components/TeamManagement/ExistingTeam/ChangeTeamStatusSysAdmin'
+import AnswerComplaints from './components/Complaints/AnswerComplaints'
 
 
 function App() {
@@ -76,6 +78,12 @@ function App() {
               {/* sys admin: */}
             <Route path='/home/watchlogs'>
               <WatchSysLogs updateTitle={updateTitle} showError={updateErrorMessage}/>
+            </Route>
+            <Route path='/home/changeteamstatusadmin'>
+              <ChangeTeamStatusSysAdmin updateTitle={updateTitle} showError={updateErrorMessage}/>
+            </Route>
+            <Route path='/home/answercomplaints'>
+              <AnswerComplaints updateTitle={updateTitle} showError={updateErrorMessage}/>
             </Route>
               {/* league and team: */}
             <Route path='/home/addleague'>

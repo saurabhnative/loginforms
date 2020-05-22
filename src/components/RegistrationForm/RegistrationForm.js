@@ -97,6 +97,7 @@ function RegistrationForm(props) {
                         <option value="TeamOwner" className="form-control">Team Owner</option>
                         <option value="Referee" className="form-control">Referee</option>
                         <option value="Fan" className="form-control">Fan</option>
+                        <option value="SystemAdministrator" className="form-control">System Administrator</option>
                     </select>
                 </div>
                 <div className="form-group text-left">
