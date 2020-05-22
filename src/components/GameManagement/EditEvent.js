@@ -12,12 +12,12 @@ function UpdateEvent(props) {
     var request;
     var buttonText;
     if(props.newSeason === true){
-        request = "???????"
+        request = "createnewevent"
         props.updateTitle('Add event to game')
         buttonText = "Add event"
     }
     else{
-        request = "????????"
+        request = "editgameevent"
         props.updateTitle('Update existing event in game')
         buttonText = "Update event in game"
     }
@@ -25,7 +25,7 @@ function UpdateEvent(props) {
     const [details , setDetails] = useState({
         teamName : "",
         playerName : "",
-        eventType : "2000",
+        eventType : "goal",
         gameId:"",
         successMessage: null
     })
@@ -76,33 +76,18 @@ function UpdateEvent(props) {
             <form>
                 <TextInput label="Team Name" id="teamName" placeholder="Enter team name" state={details.teamName} handleChange={handleChange}/>
                 <TextInput label="Player Username" id="playerName" placeholder="Enter player username" state={details.playerName} handleChange={handleChange}/>
-                <TimePicker startDate={startDate} setStartDate={setStartDate}/>
+                <TimePicker startDate={startDate} setStartDate={setStartDate} display={props.newSeason ? 'none' : 'block' }/>
                 <div className="form-group text-left">
                 <label>Event type:</label>
                 <div className="form-group text-center">
                     <select id="eventType" value={details.eventType} onChange={handleChange} className="dropdown-toggle btn btn-primary">
-                        <option value="2000" className="form-control">2000</option>
-                        <option value="2001" className="form-control">2001</option>
-                        <option value="2002" className="form-control">2002</option>
-                        <option value="2003" className="form-control">2003</option>
-                        <option value="2004" className="form-control">2004</option>
-                        <option value="2005" className="form-control">2005</option>
-                        <option value="2006" className="form-control">2006</option>
-                        <option value="2007" className="form-control">2007</option>
-                        <option value="2008" className="form-control">2008</option>
-                        <option value="2009" className="form-control">2009</option>
-                        <option value="2010" className="form-control">2010</option>
-                        <option value="2011" className="form-control">2011</option>
-                        <option value="2012" className="form-control">2012</option>
-                        <option value="2013" className="form-control">2013</option>
-                        <option value="2014" className="form-control">2014</option>
-                        <option value="2015" className="form-control">2015</option>
-                        <option value="2016" className="form-control">2016</option>
-                        <option value="2017" className="form-control">2017</option>
-                        <option value="2018" className="form-control">2018</option>
-                        <option value="2019" className="form-control">2019</option>
-                        <option value="2020" className="form-control">2020</option>
-                        <option value="2021" className="form-control">2021</option>
+                        <option value="goal" className="form-control">Goal</option>
+                        <option value="offside" className="form-control">Offside</option>
+                        <option value="foul" className="form-control">Foul</option>
+                        <option value="red_ticket" className="form-control">Red Ticket</option>
+                        <option value="yellow_ticket" className="form-control">Yellow Ticket</option>
+                        <option value="injury" className="form-control">Injury</option>
+                        <option value="player_replacement" className="form-control">Player Replacement</option>                        
                     </select>
                 </div>
                 </div>

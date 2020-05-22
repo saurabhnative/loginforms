@@ -95,3 +95,7 @@ export function gotoWatchLogs(){
 export function gotoAnswerComplaints(){
     history.push('answercomplaints')
 }
+
+export function gotoSaveGame(){
+    history.push('savegame')
+}

@@ -34,6 +34,7 @@ import HomeSysAdmin from './components/Home/HomeSysAdmin'
 import WatchSysLogs from './components/Logs/WatchSysLogs'
 import ChangeTeamStatusSysAdmin from './components/TeamManagement/ExistingTeam/ChangeTeamStatusSysAdmin'
 import AnswerComplaints from './components/Complaints/AnswerComplaints'
+import SaveGame from './components/GameManagement/SaveGame'
 
 
 function App() {
@@ -66,7 +67,7 @@ function App() {
               <HomeTeamManager updateTitle={updateTitle}/>
             </Route>
             <Route path="/home/referee">
-              <HomeReferee updateTitle={updateTitle}/>
+              <HomeReferee updateTitle={updateTitle} updateNewSeason={updateNewSeason}/>
             </Route>
             <Route path="/home/systemadministrator">
               <HomeSysAdmin updateTitle={updateTitle}/>
@@ -126,7 +127,10 @@ function App() {
               <AddRemoveReferee updateTitle={updateTitle} showError={updateErrorMessage}/>
             </Route>
             <Route path='/home/editevent'>
-              <EditEvent updateTitle={updateTitle} showError={updateErrorMessage}/>
+              <EditEvent updateTitle={updateTitle} showError={updateErrorMessage} newSeason={newSeason}/>
+            </Route>
+            <Route path='/home/savegame'>
+              <SaveGame updateTitle={updateTitle} showError={updateErrorMessage}/>
             </Route>
           </Switch>
           <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>
