@@ -19,9 +19,9 @@ function AddLeague(props) {
         }))
     }
     const sendDetailsToServer = () => {
-        const payload={
-            "name":leagueDetails.name,
-        }
+        const payload=`{
+            name:'${leagueDetails.name}',
+        }`
         axios.post(API_BASE_URL+'defineleague', payload)
             .then(function (response) {
                 if(response.status === 200){
