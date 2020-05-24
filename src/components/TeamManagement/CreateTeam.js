@@ -20,10 +20,10 @@ function CreateTeam(props) {
         }))
     }
     const sendDetailsToServer = () => {
-        const payload={
-            "name":details.name,
-            "field":details.field,
-        }
+        const payload=`{
+            name:'${details.name}',
+            field:'${details.field}',
+        }`
         axios.post(API_BASE_URL+'addteam', payload)
             .then(function (response) {
                 if(response.status === 200){
