@@ -6,7 +6,10 @@ function Header(props) {
         if (typeof s !== 'string') return ''
         return s.charAt(0).toUpperCase() + s.slice(1)
     }
-    const title = capitalize(props.location.pathname.substring(1,props.location.pathname.length))
+    let title = capitalize(props.location.pathname.substring(1,props.location.pathname.length))
+    if(props.location.pathname === '/') {
+        title = 'Welcome'
+    }
     return(
         <nav className="navbar navbar-dark bg-primary">
             <div className="row col-12 d-flex justify-content-center text-white">

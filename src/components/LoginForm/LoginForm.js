@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import './LoginForm.css';
-import {API_BASE_URL} from '../../constants/apiContants';
+import {API_BASE_URL, ACCESS_TOKEN_NAME} from '../../constants/apiContants';
 import { withRouter } from "react-router-dom";
 
 function LoginForm(props) {
@@ -24,17 +24,18 @@ function LoginForm(props) {
             "email":state.email,
             "password":state.password,
         }
-        axios.post(API_BASE_URL+'login', payload)
+        axios.post(API_BASE_URL+'/user/login', payload)
             .then(function (response) {
-                if(response.data.code === 200){
+                if(response.status === 200){
                     setState(prevState => ({
                         ...prevState,
                         'successMessage' : 'Login successful. Redirecting to home page..'
                     }))
+                    localStorage.setItem(ACCESS_TOKEN_NAME,response.data.token);
                     redirectToHome();
                     props.showError(null)
                 }
-                else if(response.data.code === 204){
+                else if(response.code === 204){
                     props.showError("Username and password do not match");
                 }
                 else{
