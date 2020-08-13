@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import './RegistrationForm.css';
-import {API_BASE_URL} from '../../constants/apiContants';
+import {API_BASE_URL, ACCESS_TOKEN_NAME} from '../../constants/apiContants';
 import { withRouter } from "react-router-dom";
 
 function RegistrationForm(props) {
@@ -25,13 +25,14 @@ function RegistrationForm(props) {
                 "email":state.email,
                 "password":state.password,
             }
-            axios.post(API_BASE_URL+'register', payload)
+            axios.post(API_BASE_URL+'/user/register', payload)
                 .then(function (response) {
-                    if(response.data.code === 200){
+                    if(response.status === 200){
                         setState(prevState => ({
                             ...prevState,
                             'successMessage' : 'Registration successful. Redirecting to home page..'
                         }))
+                        localStorage.setItem(ACCESS_TOKEN_NAME,response.data.token);
                         redirectToHome();
                         props.showError(null)
                     } else{
