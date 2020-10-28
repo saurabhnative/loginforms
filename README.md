@@ -13,3 +13,6 @@ Personal Blog: https://coderwhodreams.com/blog/creating-private-routes-and-handl
 
 ### Leave a feedback
 If you found this project useful, then make sure to star the project.
+
+### Start the project
+Clone this repo and then run `npm run start`
