@@ -17,6 +17,14 @@ Personal Blog: https://coderwhodreams.com/blog/creating-private-routes-and-handl
 ### Leave a feedback
 If you found this project useful, then make sure to star the project.
 
+### Connect with me on the web:
+🦜 Twitter: https://twitter.com/saurabhnative  
+💼 LinkedIn: https://www.linkedin.com/in/saurabh-mhatre   
+🖥 Github: https://github.com/smhatre59  
+🎬 Youtube: https://www.youtube.com/channel/UCtWzTuAO-uEnGhrktGNPi0g  
+📃 Website: https://coderwhodreams.com   
+📝 Medium: https://medium.com/@smhatre59  
+
 ### Starting with the project   
 1. Clone this repo  
 2. Run `npm install` or `yarn install`  
